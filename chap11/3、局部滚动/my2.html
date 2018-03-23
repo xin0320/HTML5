@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+
+        body{
+            background: url(bg2.jpg) no-repeat;
+            background-size: cover;
+            font-family: 'Times New Roman', Times, serif;
+            color: white;
+            position: relative;
+            background-attachment: fixed;
+            box-sizing: border-box;
+        }
+
+        #title h1{
+            font-size: 65px;
+            text-transform: uppercase;
+            padding: 20px;
+        }
+
+        #title li{
+            float: left;
+            padding-right: 5px;
+            list-style: none;
+        }
+
+        #title li a{
+            color: white;
+        }
+
+        #title{
+            position: fixed;
+        }
+        /**/
+        #container{
+           position: absolute;
+           /*去掉width=100%，滚动条的位置不同*/
+           width: 100%;
+           top: 50%;
+           /*超出长度便出现滚动条*/
+           overflow: auto;
+           box-sizing: border-box;
+        }
+
+        #scroll{
+            width: 3200px;
+            height: 200px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, .2);
+        }
+       
+       
+        
+
+        #scroll .article{
+            width: 800px;
+            height: 200px;
+            /*每一个article都向左漂浮*/
+            float: left;
+            
+            overflow: auto;
+            box-sizing: border-box;
+           
+
+        }
+        #scroll .article img{
+            /*图文混排*/
+            float: left;
+            margin-right: 10px;
+            
+        }
+
+        #scroll .article h1{
+            font-size: 32px;
+            padding-bottom: 10px;
+        }
+
+
+        
+
+    </style>
+</head>
+<body>
+    <div id="title">
+        <h1>The Scroll Effect</h1>
+      <!--  <h2>Making this the first true generator on the Internet</h2>
+      -->  <ul>
+          <li><a href="#pic1" id="link1">PIC1</a></li>
+          <li><a href="#pic2" id="link2">PIC2</a></li>
+          <li><a href="#pic3" id="link3">PIC3</a></li>
+          <li><a href="#pic4" id="link4">PIC4</a></li>
+        </ul>
+      </div>
+      <div id="container">
+      <div id="scroll">
+        <div class="article" id="pic1">
+          <img src="pic1.jpg">
+          <h1>Duis volutpat</h1>
+          <p>Phasellus hendrerit posuere velit sed suscipit. Morbi eget blandit mauris. Quisque convallis quis velit sit amet placerat. Vestibulum ut leo bibendum, rutrum mi non, vulputate nibh. Praesent vitae viverra orci, at imperdiet nisl.</p>
+        </div>
+        <div class="article" id="pic2">
+            <img src="pic2.jpg">
+            <h1>Fusce interdum</h1>
+            <p>Etiam cursus erat eros, at gravida augue lacinia ut. Fusce odio lorem, fringilla sed aliquam vel, consequat feugiat lectus. Morbi sollicitudin lacus sed erat tempus, non finibus nunc aliquam. Donec a pulvinar metus, id scelerisque lectus. Aliquam erat volutpat.</p>
+          </div>
+          <div class="article" id="pic3">
+            <img src="pic3.jpg">
+            <h1>Vivamus</h1>
+            <p>Mauris consectetur magna sit amet metus placerat, consequat ullamcorper mi pellentesque. Pellentesque et velit dui. Nunc felis erat, rutrum in velit ac, luctus molestie nunc. Morbi sed consequat nibh, vitae iaculis lacus. Pellentesque eget consectetur libero. In sit amet luctus mi. Proin quis interdum elit.</p>
+          </div>
+          <div class="article"  id="pic4">
+            <img src="pic4.jpg">
+            <h1>Praesent</h1>
+            <p>Sed fermentum massa in dui volutpat dignissim. Nunc at neque vel dui aliquam elementum. Morbi varius laoreet arcu, vel lobortis enim faucibus vitae. Morbi nec lorem tempor, luctus enim sed, imperdiet sem.</p>
+          </div>
+      </div>
+      </div>
+</body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body {
+	        background:#FFF;
+	        margin:50px;
+	        font-family:"Helvetica Neue", sans-serif;
+        }
+
+        #menu{
+            background: #27AE60;
+            height: 65px;
+        }
+
+        #menu ul li{
+            float: left;
+          
+            border-right: 1px solid rgba(155,255,255,.3);
+            list-style: none;
+
+            display: block;
+        }
+
+        #menu ul li a{
+             color: white;
+             display: block;
+             line-height: 65px;
+             text-align: center;
+             font-size: 21px;
+             text-decoration: none;
+
+            padding: 0 35px;
+            
+            
+        }
+
+        #menu ul li a:hover{
+            background: rgb(4, 153, 66);
+        }
+        #menu ul li ul li{
+            background: rgb(121, 235, 169);
+            display: none;
+        }
+
+        #menu ul li:hover ul li{
+            display: block;
+            float: none;/*去除继承的父类float：left*/
+        }
+
+        #menu ul li ul li a{
+            font-size: 18px;
+        }
+
+        #menu ul li ul li a:hover{
+            background: rgb(54, 209, 119);
+        }
+    </style>
+</head>
+<body>
+    <nav id="menu">
+  <ul>
+    <li><a href="">Home</a></li>
+    <li><a href="">News</a>
+      <ul>
+        <li><a href="">Sports</a></li>
+        <li><a href="">Weather</a></li>
+        <li><a href="">Finance</a></li>
+      </ul>
+    </li>
+    <li><a href="">Products</a>
+      <ul>
+        <li><a href="">Construcdddddddtion</a></li>
+        <li><a href="">Machinery</a></li>
+        <li><a href="">Compressor</a></li>
+        <li><a href="">Vehicle</a></li>
+      </ul>
+    </li>
+    <li><a href="">Services</a></li>
+    <li><a href="">Contact</a></li>
+  </ul>
+</nav>
+</body>
+</html>
+
+<!--
+    1、一开始固定了宽度，二级菜单并没有漂浮，但是有的菜单会超出宽度
+    后来去除宽度，二级菜单继承一级菜单的float属性向左漂浮，后重新将二级菜单的float改为none;
+    
+    2、设置主菜单为relative，二级菜单为absolute，相对高度为一级菜单的高度，此现象没有出现float继承现象，很奇怪
+
+-->

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5 Example</title>
+<style type="text/css">
+body {
+	background:#333;
+	font-family:"Helvetica Neue", sans-serif;
+	text-align:center;
+	color:#FF0;
+	padding:40px 0;
+}
+h1{
+	font-size:150px;
+	text-transform:uppercase;
+	opacity:.9;
+	font-weight:100;
+}
+
+/*使动画，满屏显示，在video中已经设置好了自动重复播放*/
+#video{
+	position:fixed; /* 使视频位置固定 */
+	
+	/*设置最小宽度和高度，并将视频的宽高设置为自动，使得视频自动充满整个屏幕*/
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100; /* 将视频设置在最下层 */
+
+	/*若视频没有居中，则将top和left设置为50%，使得视频左上角居中，
+	再利用transform属性将视频向上向左各便宜50%*/
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	opacity:.5;
+}
+</style>
+</head>
+
+<body>
+<h1>Vestibulum neque</h1>
+<video src="video.mp4" id="video" autoplay loop>
+  您的浏览器不支持 video 标签。
+</video>
+</body>
+</html>

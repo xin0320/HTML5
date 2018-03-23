@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style type="text/css">
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            background: url(bg.png);
+            background-size: cover;
+        }
+
+        #result{
+            text-align: center;
+            margin:200px auto;
+            width:500px;
+	        height:350px;
+            background: rgba(0,0,0,.5);
+            padding: 10px 30px;
+            font-family: 'Times New Roman', Times, serif;
+            color: white;
+            position: relative;
+            box-shadow:0px 20px 35px rgba(0,0,0,.75);
+            border:1px solid rgba(255,255,255,.3);
+            border-radius: 12px;
+        }
+
+        #result img{
+            width: 150px;
+            position: absolute;
+            left: 35%;
+            top: 12%;
+
+            
+        }
+
+        #result #city{
+            font-size: 30px;
+            padding-top: 210px;
+           
+        }
+
+        #result #temp{
+            font-size: 30px;
+            padding-top:10px;
+        }
+        
+        
+
+         
+        #loading{
+            font-size: 32px;
+            text-align: center;
+            /*设置成相对定位就不会占用图片和文字部分了，可以重叠*/
+            position: absolute;
+            left: 40%;
+            top: 45%; 
+            transition:opacity 1s;
+        }
+
+        #loading.hide{
+            opacity: 0;
+        }
+
+        #icon,#city,#temp{
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        #icon.show, #city.show, #temp.show{
+            opacity: 1;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="result">
+        <p id="loading">Loading...</p>
+      <img src="sunny.png" id="icon">
+      <p id="city">Shanghai</p>
+      <p id="temp">27 C</p>
+    </div>
+
+    <script type="text/javascript">
+        function loadXMLDoc(){
+            var xmlHttp;
+            /*浏览器兼容*/
+            if(window.XMLHttpRequest){
+                xmlHttp = new XMLHttpRequest(); 
+            }else{
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            
+
+            xmlHttp.onreadystatechange = function(){
+                if(xmlHttp.readyState == 4){//表示请求已经完毕，并且响应已经就绪
+                //将字符串数据转化为json对象，注意其特定写法
+                var jsonObject = eval("(" + xmlhttp.responseText + ")");
+                    //文字显示
+                    document.getElementById("icon").src = jsonObject.weather+".png";
+                    document.getElementById("city").innerHTML = jsonObject.city;
+                    document.getElementById("temp").innerHTML = jsonObject.temp + "℃";
+
+                    //loading的隐藏和文字图片的显示
+                    document.getElementById("icon").className = "show";
+                    document.getElementById("city").className = "show";
+                    document.getElementById("temp").className = "show";
+                    document.getElementById("loading").className = "hide";
+                }
+            }
+
+            xmlHttp.open("GET", "json.php",true);
+            xmlHttp.send(null);
+        }
+        loadXMLDoc();
+    </script>
+</body>
+</html>

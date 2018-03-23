@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            background: white;
+            font-family: sans-serif;
+            margin: 10px;
+        }
+
+        #sec{
+            width: 200px;
+            height: 500px;
+            position: relative;
+            background: url(bg.jpg);
+            overflow:hidden;
+        }
+
+        #sec-description{
+            position: absolute;
+            color: white;
+            box-sizing: border-box;
+            padding: 0px 30px;
+            /*提升sec-decsiption的z-index的值，使得svg图像显示在下方，以作衬托文字显示的纯色背景*/
+            z-index: 20; 
+            /*解决webkit浏览器中的闪现问题*/
+            -webkit-transform-style: preserve-3d;
+        }
+
+        h1{
+            font-size: 48px;
+             /*解决webkit浏览器中的闪现问题*/
+            -webkit-backface-visibility: hidden;
+        }
+
+        p{
+            font-size: 14px;
+             /*解决webkit浏览器中的闪现问题*/
+             -webkit-backface-visibility: hidden;
+        }
+
+        #polygon{
+            fill: #34495e; /*polygon填充颜色时用的还fill，背景颜色改变之后文字显示出来*/
+            stroke-width: 0px;
+        }
+
+        #sec svg{
+            /*transition: all 5s;*/
+        }
+        /*去除hover属性后，也可以在svg内部添加aninatation属性完成动画
+        #sec:hover svg{
+            opacity: .9;
+            为svg添加transitio属性,0.5s后将透明度慢慢转化为0.9
+            transition: all .5s;
+            鼠标滑过sec元素时，svg向上移动30像素
+            transform: translateY(-30px);
+        }
+
+        */
+    </style>
+</head>
+<body>
+    <div id="sec">
+        <div id="sec-description">
+            <h1>Zerg</h1>
+            <p>Led by the cunning Queen of Blades, the zerg are set to unleash their alien horrors on the galaxy.</p>
+        </div>
+
+         <!-- 利用SVG绘制图形 line线条 ellipse椭圆 polygon绘制不少于三个边的多边形-->
+    <svg width="200px" height = "500px" >
+        <polygon fill="white" stroke="blue" id="polygon" points="0 0, 200 0, 200 350, 0 250">
+            <!-- points指svg中的各顶点，to表示动画停止时各顶点的位置 dur为动画的持续时间 begin表示发生动画的svg的类型和动作 fill=freeze -->
+            <animate attributeName="points" dur="1500ms" to="0,0,200,0,200,250,0,250" begin="polygon.mouseover" fill="freeze"></animate>     
+
+        </polygon>
+    </svg>
+    </div>
+
+   
+</body>
+</html>

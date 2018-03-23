@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        section{
+            margin: 100px;
+            width: 500px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            /*box-sizing: border-box;*/
+        }
+
+        section::after{
+            content: "";
+            clear: both;
+            display: table;
+        }
+        article{
+            width: 250px;
+            height: 250px;
+            float: left;
+            box-sizing: border-box;  /*不要弄错了位置,忘记添加的话，超过了父容器的长度就不能浮动了*/
+            border-bottom: solid 1px rgb(71, 70, 70);
+            border-right: solid 1px rgb(71, 70, 70);
+        }
+
+        article:nth-child(odd){
+            border-left: solid 1px rgb(71, 70, 70);
+        }
+        article:nth-child(1){
+            border-top: solid 1px rgb(71, 70, 70);
+           
+        }
+
+        article:nth-child(2){
+            border-top: solid 1px rgb(71, 70, 70);
+            height: 500px;
+            padding-top: 100px;
+        }
+
+        article:nth-child(3){
+            margin-top: -250px;
+        }
+        /* 设置盒子的跨列宽度
+        article:nth-child(3){
+            width: 100%;
+        }
+
+        */
+        h1{
+            color: rgb(71, 70, 70);
+            font-size: 30px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        p{
+            color: rgb(212, 212, 208);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <section>
+        <article>
+          <h1>Ulysses</h1>
+          <p>Soaring through the galaxies</p>
+          <img src="pic1.png" alt="image of Ulysses">
+        </article>
+        <article>
+          <h1>Dallas</h1>
+          <p>Rollin' down to Dallas</p>
+          <img src="pic2.png" alt="image of Dallas">
+        </article>
+        <article>
+          <h1>McKay</h1>
+          <p>McKay and his best friend</p>
+          <img src="pic3.png" alt="image of McKay">
+        </article>
+       <!--
+        <article>
+            <h1>Thunder</h1>
+            <p>Thundercats on the move</p>
+            <img src="pic4.png" alt="image of Thunder">
+          </article>
+        -->
+      </section>
+</body>
+</html>

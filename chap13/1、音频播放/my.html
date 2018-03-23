@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style type="text/css">
+        @font-face {
+	        font-family: 'icon-font';
+	        src: url('font/flat-ui-icons-regular.ttf'), url('font/flat-ui-icons-regular.eot'), url('font/flat-ui-icons-regular.woff'), url('font/flat-ui-icons-regular.svg');
+        }  
+
+        body{
+            background: #16A085;
+            margin: 40px;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        #audio-player{
+            width: 480px;
+            height: 100px;
+            border-radius: 20px;
+            border: 2px solid rgba(255,255, 255,.8);
+            position: relative;
+        }
+
+        /*为paly和pause按钮元素设置显示样式，在此使用flat UI的图标字体使其
+        外观分别显示为播放和暂停*/
+        #audio-player button{
+            font-size: 0px;
+            background: none;
+            border:0;
+            position: absolute;
+        }
+
+        #play::after{
+            content: '\e616';
+            font-size: 36px;
+            font-family: 'icon-font';
+            color: #FFF;
+            line-height: 100px; /* 垂直居中 */
+            cursor: pointer;
+        }
+
+        #play{
+            left: 0px;
+        }
+
+        #pause::after{
+
+            content: '\e615';
+            font-size: 36px;
+            font-family: 'icon-font';
+            color: #FFF;
+            line-height: 100px;
+            cursor: pointer;
+        }
+        #pause{
+            left: 100px;
+        }
+
+        /* 点击播放和暂停按钮时背景设置为.8  */
+        #play:hover::after{
+            color: rgba(255,255, 255,.8);
+        }
+
+        #pause:hover::after{
+            color: rgba(255,255, 255,.8);
+        }
+
+        /* 播放进度条的进度原件（点）和背景原件（横线）的设置 */
+        .progress{
+            position: absolute;
+            left: 150px;
+            top: 50px;
+            height: 10px;
+            border-radius: 10px;
+
+        }
+
+        /*没有播放时宽度为0.播放之后便随着音乐向右移动*/
+        #progress-bar{
+            width: 0px;
+            background: #FFF;
+            z-index: 100; /* 设置优先级 */
+        }
+
+        #progress-bg{ 
+            width: 240px;
+            background: rgba(255,255, 255,.3);
+            z-index: 200;
+        }
+
+        /* play-status 对应播放状态的显示原件, */
+        #play-status{
+
+            position: absolute;
+            left: 420px;
+        }
+
+        #play-status.mute::after{
+
+            content: '\e618'; /*静音图标*/
+            font-size: 36px;
+            font-family: 'icon-font';
+            color: #FFF;
+            cursor: pointer;
+            line-height: 100px;
+        }
+
+        #play-status.unmute::after{
+            content: '\e617'; /* 发声图标 */
+            font-size: 36px;
+            font-family: 'icon-font';
+            cursor: pointer;
+            color: #FFF;  
+            line-height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--
+    <audio src="music.mp3" id="music" autoplay controls loop></audio>
+    -->
+
+    <!-- 支持多种浏览器模式,使用audio+source格式,所有的移动端都支持OGG，ios支持MP3 -->
+    <!--
+    <audio controls autoplay>
+        <source src="music.ogg" type="audio/ogg">
+        <source src="music.mp3" type="audio/ogg">
+        <source src="music.wav" type="audio/ogg"> 
+    </audio>
+    -->
+
+
+    <audio id="music" src="music.mp3"></audio>
+    <div id="audio-player">
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <div id="progress-bar" class="progress"></div>
+        <div id="progress-bg" class="progress"></div>
+        <div id="play-status" class="mute"></div>
+    </div>
+    <!--  
+    通过js控制音频的播放
+    -->
+    <script type="text/javascript">
+        var player = document.getElementById("audio-player");
+        var play = document.getElementById("play");
+        var pause = document.getElementById("pause");
+        var bar = document.getElementById("progress-bar");
+        var music = document.getElementById("music");
+        var barbg = document.getElementById("progress-bg");
+        var playstatus = document.getElementById("play-status");
+        //获取进度条的宽度，便于后续计算播放时进度条的宽度
+        var totalWidth = barbg.offsetWidth;
+
+        //点击play时显示声音，pause时不显示声音
+        play.onclick = function(){
+            music.play();
+            playstatus.className = "unmute";
+        }
+
+        pause.onclick = function(){
+            music.pause();
+            playstatus.className = "mute";
+        }
+
+        //为audio元素设置timeupdate侦听事件，在对应的执行函数中
+        //通过获取currentTime和duration来获取当前播放时间和总时间
+        //将两者相除就能得到播放进度的百分比，再将其乘以播放背景的总宽度，
+        //就得到了进度条的动态显示宽度
+
+        //若希望音乐反复播放或播放其他其他音乐，可在showPress中添加if判断，当进度变量大于1
+        //时，即代表播放完成，此时可以制定下一个播放路径，并调用play（）方法播放该音频文件
+
+
+        music.addEventListener("timeupdate",showProgress);
+        function showProgress(){
+            var progress = music.currentTime / music.duration;
+            bar.style.width = progress *totalWidth + "px";
+
+            if(progress >= 1){
+                music.src = 'music.mp3';
+                music.play();
+            }
+        }
+
+        //按进度条对音乐进行跳转，可以为progress-bg元素创建onmousedown事件函数
+        //当鼠标按下时，通过事件函数的clientX的属性获取这次按下时x的坐标
+        //此时获取的是全局坐标，还需要减去progress-bg元素机器父元素的坐标，
+        //才能得到该点在bg中的相对坐标值，将其除以bg元素的总宽度，再乘以音乐习总长度就可以得到进度了
+
+        barbg.onmousedown = function(e){
+            var pos = e.clientX - barbg.offsetLeft - player.offsetLeft;
+            //将当前相对位置转化为相应时间
+            music.currentTime = pos / totalWidth * music.duration;
+        }
+
+       
+    </script>
+</body>
+</html>

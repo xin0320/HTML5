@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background: #4ea980;
+            margin: 50px;
+        }
+
+        .loader{
+            text-indent: -9999em;
+            width: 200px;
+            height: 200px;
+            /*设置内部阴影，颜色为白色，宽度为15px
+                使用box-shadow而不使用border，是因为box-shadow不影响div内部元素的定位
+                先设置0.2透明度的白色圆圈
+            */
+            box-shadow: inset 0 0 0 20px  rgba(255,255,255,.2);
+            border-radius: 50%;
+
+            /* 设置position用来定义半圆的时候使用 */
+            position: relative;
+            background: #ffffff;
+            /*制作渐变的尾巴的效果 liner-gradient 
+                从最左侧向右10%均为纯白色，在向右到50%的位置变为完全透明色
+            */
+
+            background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 50%);
+            
+            /*添加动画*/
+            animation: load-effect 2s infinite linear;
+        }
+
+        /* 
+            使用before绘制四分之一圆放在左上侧
+        */
+
+        .loader::before{
+            position: absolute;
+            content: '';
+            width:50%;
+            height: 50%;
+            background:#ffffff;/*设置为白色的四分之一圆*/
+            border-radius: 100% 0 0 0; 
+            left: 0;
+            top: 0;
+
+            
+        }
+
+        /* 
+            在border内部添加一个与背景色相同的圆将四分之一的白色盖住
+        */
+
+        .loader::after{
+            /* 不要忘记设置position*/
+            position: absolute;
+            content: '';
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            /*定位*/
+            left:20px;
+            top:20px;
+            background: #4ea980;
+        }
+
+        /*制动画，定义好关键帧,用animation进行引用，添加在before中*/
+        @keyframes load-effect{
+            0%{
+                transform: rotate(0deg);
+            }
+
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+     
+
+    </style>
+</head>
+<body>
+    <div class="loader">Loading...</div>
+</body>
+</html>
+
+<!--
+    1、设置具有一定透明度的圆圈（使用box-shadow），并在左侧添加扫尾效果
+    2、利用before在左上角添加白色四分之一圆
+    3、利用after用与背景色相同但是在大圆内部的小圆将白色四分之一圆盖住
+    4、定义动画load-effect，并使用animanation添加动画
+-->

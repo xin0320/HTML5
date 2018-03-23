@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        @font-face{
+            font-family: 'icon-font';
+            src: url('font/flat-ui-icons-regular.ttf'), url('font/flat-ui-icons-regular.eot'), url('font/flat-ui-icons-regular.woff'), url('font/flat-ui-icons-regular.svg');
+        }
+
+        body{
+            background: sandybrown;
+            margin: 50px;
+        }
+
+        a{
+            color: white;
+            font-family: sans-serif;
+            font-size: 34px;
+            text-decoration: none;
+
+            display: block;
+            width: 500px;
+            height: 60px;
+            line-height: 60px;
+
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+
+            box-sizing: border-box;
+            /*aaaa*/
+            padding-left: 140px;
+            transition: all .5s;
+            /*定位*/
+            position: relative;
+        }
+
+        a:hover{
+            /*bbbb*/
+            padding-left: 20px;
+            background: rgba(0, 0, 0, .5);
+        }
+        
+        /* 使用flat-UI创建字体，引入图片并以绝对定位的方式进行定位 >*/
+
+        a::after{
+            font-family: 'icon-font';
+            content: '\e607';
+            /*定位,并引入动画*/
+            position: absolute;
+            right: 85%;
+            transition: all .5s;  /*放在a:hover::after也可*/
+        }
+
+        /* 为引入的特殊字符创建hover时的位置*/
+
+        a:hover::after{
+            position: absolute;
+            right:5%;
+        }
+    </style>
+</head>
+<body>
+    <a href="">This is a link</a>
+</body>
+</html>
+
+<!--
+    自定义添加的符号没有出现在布局上，通过position相对定位来实现效果
+    并为 a 和a:hover是创建transition动画
+    最后一句，hover在after的前面，不可以颠倒位置
+-->

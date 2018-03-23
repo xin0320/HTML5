@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style type="text/css">
+    *{
+	    margin:0;
+	    padding:0;
+    }
+    body {
+	    background:#E1E1E1;
+	    font-family:Georgia, "Times New Roman", Times, serif;
+        /*方便为文中的插入的图片定位，设置positon*/
+	    position:relative;
+    }
+    h1{
+	    font-size:100px;
+	    margin-bottom:30px;
+    }
+    p{
+	    font-size:27px;
+	    margin-bottom:30px;
+    }
+
+     .description{
+        position: relative;
+        box-sizing:border-box;
+	    padding-top:100px;
+     }
+
+     .description img{
+         position: absolute;
+         /*是图片出现在文字的下方不会遮住文字*/
+         z-index: -10;
+     }
+
+     /*是图片分别显示在左侧右侧和左侧
+        图文混排不使用position+left(right)+padding的时候，可以直接使用float+margin进行混排更加方便
+        此处设置图片使用绝对定位的原因是可以更改图片的top属性
+     */
+
+     #mask img{
+        /* float: left;*/
+        left:0;
+     }
+
+     #hat img{
+        right:0;
+     }
+
+     #movie img{
+        left:0;
+     }
+
+    img{
+	    top:0;  
+    }
+     /*为三个div设置不同的padding值，使其与图片错开位置*/
+     #mask{
+         padding-left: 45%;
+         padding-right: 15%；
+     }
+
+     #hat{
+         padding-left: 5%;
+         padding-right: 45%;
+     }
+
+     #movie{
+         padding-left: 50%;
+         padding-right: 10%;
+     }
+    </style>
+</head>
+<body>
+        <div id="mask" class="description">
+                <img src="p1.png">
+                    <h1>Mask</h1>
+                    <p>Etiam cursus erat eros, at gravida augue lacinia ut. Fusce odio lorem, fringilla sed aliquam vel, consequat feugiat lectus. Morbi sollicitudin lacus sed erat tempus, non finibus nunc aliquam. Donec a pulvinar metus, id scelerisque lectus. Aliquam erat volutpat. Nam id ligula sed urna dignissim congue. Fusce ut varius tellus. Integer vel rhoncus tellus.</p>
+                    <p>Phasellus hendrerit posuere velit sed suscipit. Morbi eget blandit mauris. Quisque convallis quis velit sit amet placerat. Vestibulum ut leo bibendum, rutrum mi non, vulputate nibh. Praesent vitae viverra orci, at imperdiet nisl.</p>
+                    <p>In a tincidunt sem. Fusce interdum metus ut bibendum congue. Suspendisse a erat leo. Vivamus efficitur ac neque eget luctus. Nunc aliquam eleifend eros a dignissim. Aliquam congue id justo sed finibus. Praesent finibus pretium malesuada. Mauris malesuada at lectus sit amet mattis. Quisque feugiat libero id erat gravida, sit amet euismod est gravida.</p>
+                </div>
+                
+                <div id="hat" class="description">
+                <img src="p2.png">
+                    <h1>Hat</h1>
+                    <p>Sed fermentum massa in dui volutpat dignissim. Nunc at neque vel dui aliquam elementum. Morbi varius laoreet arcu, vel lobortis enim faucibus vitae. Morbi nec lorem tempor, luctus enim sed, imperdiet sem. Nam quis dui feugiat nibh tincidunt rhoncus. Integer tincidunt nec ipsum tristique imperdiet. Fusce ornare tellus purus, ac condimentum elit varius et. Nullam nec purus at mauris aliquam cursus. Sed vitae sapien ac nulla porttitor mattis euismod sed justo. Aenean vulputate sagittis libero, nec mattis sapien ultrices vel.</p>
+                    <p>Phasellus hendrerit posuere velit sed suscipit. Morbi eget blandit mauris. Quisque convallis quis velit sit amet placerat. Vestibulum ut leo bibendum, rutrum mi non, vulputate nibh. Praesent vitae viverra orci, at imperdiet nisl.</p>
+                    <p>In a tincidunt sem. Fusce interdum metus ut bibendum congue. Suspendisse a erat leo. Vivamus efficitur ac neque eget luctus. Nunc aliquam eleifend eros a dignissim. Aliquam congue id justo sed finibus. Praesent finibus pretium malesuada. Mauris malesuada at lectus sit amet mattis. Quisque feugiat libero id erat gravida, sit amet euismod est gravida.</p>
+                </div>
+                
+                <div id="movie" class="description">
+                <img src="p3.png">
+                    <h1>Movie</h1>
+                    <p>Mauris consectetur magna sit amet metus placerat, consequat ullamcorper mi pellentesque. Pellentesque et velit dui. Nunc felis erat, rutrum in velit ac, luctus molestie nunc. Morbi sed consequa bero, sed eleifend dolor. Vestibulum pellentesque auctor ex sagittis consequat. Aenean sodales ultrices ante eget dignissim. Sed ornare aliquet massa non pulvinar.</p>
+                    <p>Quisque a dui vitae felis aliquam ornare. Morbi nec faucibus erat, eu blandit libero. Pellentesque in justo odio. In hac habitasse platea dictumst. Phasellus auctor, quam eget rhoncus malesuada, aruris non odio vestibulum, varius sem eleifend, mollis lectus.</p>
+                    <p>Integer vitae turpis enim. Nunc ac lobortis est, in elementum metus. Morbi a laoreet dolor. Nulla varius, tortor at cursus porttitor, erat dui volutpat turpis, vitae rhoncus justo risus tincidunt nulla. Integer rhoncus purus id dolor sollicitudin, a auctor leo aliquam. In scelerisque sem sed enim vulputate condimentum. Pellentesque auctor ullamcorper nibh nulla.</p>
+                </div>
+    
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            var maskTop = $("#mask").offset().top;
+            var hatTop = $("#hat").offset().top;
+            var movieTop = $("#movie").offset().top;
+
+            $(window).scroll(function(event){
+                var pos = $(window).scrollTop();
+
+                $("#mask > img").css({
+                    "top" : "0 "+(pos - maskTop)* .5+"px"
+                });
+
+                $("#hat > img").css({
+                    "top":"0 "+(pos - hatTop) * .5 + "px"
+                });
+
+                $("#movie > img").css({
+                    "top": (pos - movieTop)* .5 +"px"
+                });
+            });
+        });
+    </script>
+
+<!--
+    将文中添加的背景img加入变成background+padding添加即可通过background-position属性来控制图片的位置了
+-->
+</body>
+</html>

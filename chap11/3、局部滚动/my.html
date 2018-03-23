@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        html, body{
+	        height:100%;
+        }
+
+        body{
+            background: url(bg.jpg) no-repeat 50% 0;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        #title h1{
+            font-size: 56px;
+            text-transform: uppercase;
+            padding-bottom: 20px;
+        }
+
+        #title li{
+           /* float: left;*/
+            display: inline-block;
+            list-style: none;
+            padding-right: 3px;
+            color: white;
+        }
+        
+        #title li a{
+            color: white;
+        }
+        #title{
+            position: fixed;
+            /*此处bottom和left用百分比没有效果，是因为美哦与定义body的高度*/
+            bottom: 20%;
+            left: 8%;
+
+            /*title因为页面的滚动消失将其position设置为fixed*/
+
+        }
+
+       
+        #scroll{
+            width: 300px;
+            position: absolute;
+            left: 65%;
+            /*要让透明度显示出来，要给scroll设置padding*/
+            padding: 0 30px;
+            text-align: left;
+            /*为背景图片设置透明度,*/
+            background: rgba(255, 255, 255, .15);
+
+            /*单独为scroll设置滚动条,无需固定title的position和背景图片*/
+            overflow: auto;
+            height: 100%;
+        }
+
+        #scroll img{
+            margin-bottom:10px;
+        }
+
+        #scroll h1{
+            margin-bottom: 10px;
+        }
+
+        #scroll p{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="title">
+        <h1>The Scroll Effect</h1>
+
+        <ul>
+            <li><a href="#pic1">PIC1</a></li>
+            <li><a href="#pic2">PIC2</a></li>
+            <li><a href="#pic3">PIC3</a></li>
+            <li><a href="#pic4">PIC4</a></li>
+        </ul>
+    </div>
+
+    <div id="scroll">
+        <div class="article" id="pic1">
+            <img src="pic1.jpg">
+            <h1>Duis volutpat</h1>
+            <p>Phasellus hendrerit posuere velit sed suscipit. Morbi eget blandit mauris. Quisque convallis quis velit sit amet placerat. Vestibulum ut leo bibendum, rutrum mi non, vulputate nibh. Praesent vitae viverra orci, at imperdiet nisl.</p> 
+        </div>
+        <div class="article" id="pic2">
+            <img src="pic2.jpg">
+            <h1>Fusce interdum</h1>
+            <p>Etiam cursus erat eros, at gravida augue lacinia ut. Fusce odio lorem, fringilla sed aliquam vel, consequat feugiat lectus. Morbi sollicitudin lacus sed erat tempus, non finibus nunc aliquam. Donec a pulvinar metus, id scelerisque lectus. Aliquam erat volutpat.</p>
+        </div>
+
+        <div class="article" id="pic3">
+            <img src="pic3.jpg">
+            <h1>Vivamus</h1>
+            <p>Mauris consectetur magna sit amet metus placerat, consequat ullamcorper mi pellentesque. Pellentesque et velit dui. Nunc felis erat, rutrum in velit ac, luctus molestie nunc. Morbi sed consequat nibh, vitae iaculis lacus. Pellentesque eget consectetur libero. In sit amet luctus mi. Proin quis interdum elit.</p>
+        </div>
+
+        <div class="article"  id="pic4">
+            <img src="pic4.jpg">
+            <h1>Praesent</h1>
+            <p>Sed fermentum massa in dui volutpat dignissim. Nunc at neque vel dui aliquam elementum. Morbi varius laoreet arcu, vel lobortis enim faucibus vitae. Morbi nec lorem tempor, luctus enim sed, imperdiet sem.</p>
+        </div>
+
+     
+    </div>
+</body>
+</html>

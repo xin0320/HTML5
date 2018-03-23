@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style type="text/css">
+        html,body{
+            height: 100%;
+        }
+
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            background:#df4941;
+	        margin:80px;
+	        color:#FFF;
+	        font-family:"Helvetica Neue", sans-serif; 
+        }
+
+        #hero-unit{
+	        float:left;
+            /*left: 20%;*/
+            width: 40%;
+	        box-sizing:border-box;
+        }
+
+        #hero-unit img{
+            /*将宽度设置为80%，和右边的文字和左边的边框自然就空出了10%的空余*/
+	        width:80%;
+	        margin-top:50px;
+        }
+
+        #article{
+            width: 60%;
+            float: left;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #article h1{
+            font-size: 58px;
+            border-bottom: 1px solid rgba(255,255,255,.6);
+            padding-bottom: 10px;
+        }
+
+        #tip{
+            display: block;
+            font-size:18px;
+	        border-radius:24px;
+	        background:#2ECC71;
+	        border:3px solid #FFF;
+            padding: 3px 15px;
+            position: absolute;
+            top: 3%;
+            right: 3%;
+
+
+            height:35px;
+	        text-align:center;
+	        box-sizing:border-box;
+            box-shadow:2px 2px 5px rgba(0,0,0,.3);
+        }
+
+        #article article{
+            padding: 20px 0 20px 60px;
+            position: relative;
+            border-bottom: 1px dashed rgba(255,255,255,.2);
+        }
+
+        #article article:nth-child(odd){
+            background:rgba(255,255,255,.05);
+        }
+
+        #article article:nth-child(even){
+        	background:rgba(0,0,0,.05);
+        }
+
+        /*没有在例如span、a、等的元素中定义可以用css写成的图标时，一般使用：before来实现
+            上面已经用padding为article块的左边空出了元素
+        */
+
+        #article article:before{
+            content:'';
+
+
+            /*先定义方形块，再将其变成圆的*/
+            display: block;
+            height: 15px;
+            width: 15px;
+            background: rgba(0,0,0,.3);
+            border: 2px solid rgba(255,255,255,.5);
+            border-radius: 50%;
+
+            position: absolute;
+            left: 3%;
+            top: 45%;
+        }
+        
+        /*添加unread的类*/
+
+        #article article.unread:before{
+	        background:#2ECC71; /*绿色*/
+	        border:2px solid #FFF;
+        }
+
+        #article article a{
+            color: white;
+            text-decoration: none;
+        }
+
+        #article article a time{
+            font-size: 12px;
+            color: rgba(255,255,2555,.7);
+            margin-top: 8px;
+        }
+
+        #article article a p{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="hero-unit">
+        <img src="fox.png" alt="logo">
+    </div>
+    <section id="article">
+        <h1>Latest Articles</h1>
+        <span id="tip">unread</span>
+        <article>
+          <a href="">
+            <time>2015/8/3 19:20:32</time>
+            <h2>Phasellus faucibus erat sit amet eros gravida posuere.</h2>
+          </a>
+        </article>
+        <article>
+          <a href="">
+            <time>2015/8/3 15:10:53</time>
+            <h2>Maecenas viverra augue a ipsum imperdiet, et viverra purus gravida.</h2>
+          </a>
+        </article>
+        <article>
+          <a href="">
+            <time>2015/8/2 14:22:32</time>
+            <h2>Vivamus blandit ex vel vulputate porttitor.</h2>
+          </a>
+        </article>
+        <article>
+          <a href="">
+            <time>2015/8/1 20:17:32</time>
+            <h2>Aenean blandit diam at odio vestibulum, eget fermentum tempus.</h2>
+          </a>
+        </article>
+        <article>
+          <a href="">
+            <time>2015/7/23 19:20:32</time>
+            <h2>Donec in est vulputate nulla tincidunt viverra.</h2>
+          </a>
+        </article>
+        <article>
+          <a href="">
+            <time>2015/6/16 19:20:32</time>
+            <h2>In scelerisque massa vitae est condimentum fringilla.</h2>
+          </a>
+        </article>
+        <article>
+          <a href="">
+            <time>2015/5/3 19:20:32</time>
+            <h2>Praesent finibus eros tristique, suscipit est ut, facilisis elit.</h2>
+          </a>
+          </article>
+          
+          <article>
+          <a href="">
+            <time>2018/12/23 19:20:32</time>
+            <h2>Praesent finibus eros tristique, suscipit est ut, facilisis elit.</h2>
+          </a>
+        </article>
+        <article>
+        <a href="">
+            <time>2018/12/27 19:20:32</time>
+            <h2>Praesent finibus eros tristique, suscipit est ut, facilisis elit.</h2>
+          </a>
+        </article>
+    </section>
+
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        function supports_html5_storage(){
+            try{
+                return 'localStorage' in window && window['localStorge'] !== null;
+            }catch(e){
+                return false;
+            }
+
+        }
+
+        function refreshUnread(){
+            //获取上一次记录的时间，利用localStorge读取上一次访问时最后一片文章的访问时间
+            var lastTime = localStorage.getItem("lastTime");
+
+            //判断是不是第一次访问该页面,若是的话就设置一个初始时间便于比较
+            if(lastTime == null){
+                lastTime = "1900/1/1 0:0:0";
+            }
+
+            //将最后一次的访问时间lastTime转化为Date类型
+            var dateLast = new Date(lastTime);
+
+            //记录未读的文章的数量
+            var numUnread = 0;
+
+            var first = true; //设置一个布尔值，用于判断文章的存贮在状态
+
+            //遍历每一个article
+            $("#article>article").each(function(index){
+                //获取其中p元素中的文字内容，将其转换为date日期
+                var datenew = new Date($(this).find("time").text());
+                //当前日期（dateLast）比上一次访问时间（datenew）更新时
+                if(datenew > dateLast){
+                    //未读数量加1，并改变文章前的圆圈的颜色
+                    numUnread++;
+                    $(this).addClass("unread");
+
+                    //first为ture代表文章没有被localStorge存储，应该把文章写入本地存储,
+                    //并标记为lastTime,之后改变存贮状态为false
+                    if(first){
+                        localStorage.setItem("lastTime", $(this).find("time").text());
+                        first = false;
+                    }
+                }
+            });
+            //如果未读文章的数量大于零时，在unread类中显示未读文章的数量,否则就隐藏该元素
+            if(numUnread > 0){
+                $("#tip").html(numUnread+" unread");
+            }else{
+                $("#tip").hide();
+            }
+        }
+
+        //调用程序
+        $(document).ready(function(){
+            if(supports_html5_storage()){
+                refreshUnread();
+            }
+        });
+    </script>
+</body>
+</html>

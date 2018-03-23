@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+       @font-face{
+           font-family: 'icon-font';
+           src:url('font/flat-ui-icons-regular.ttf'), url('font/flat-ui-icons-regular.eot'), url('font/flat-ui-icons-regular.woff'), url('font/flat-ui-icons-regular.svg');
+
+       } 
+
+       body{
+            background:#8b8ab3;
+	        margin:50px;
+       }
+       .close{
+            background: white;
+            font-size: 0px;  /*使字体消失*/
+            display: block; /*block才可以设置宽高*/
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border:none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #8b8ab3; /*X号的颜色*/ 
+       }
+
+       .close::before{
+           font-family: 'icon-font';
+           content: '\e609';
+           font-size: 48px;
+           text-align: center;
+           display: block; /*block之后就居中了*/
+           animation: spin 1s linear infinite;
+            
+       }
+       /*只能转360度*/
+       .close:hover::before{
+        /* transform: rotate(360deg);
+            transition: transform 1s linear;*/            
+            animation: spin 1s linear infinite;
+       }
+
+       /*要想使图标不停的旋转，则需要使用animation动画
+        使用animation动画的前提是制作动画的各个关键帧
+        兼容性写法前面加 -webkit-
+       */
+
+       @keyframes spin{
+           from{
+               transform: rotate(0deg);
+           }
+
+           to{
+               transform: rotate(360edg);
+           }
+       }
+    </style>
+</head>
+<body>
+    <span class="close">Close</span>
+</body>
+</html>

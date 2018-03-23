@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        html, body {
+            height:100%;
+            margin:50px;
+            padding:0;
+        }
+        </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="850" height="400">
+        Your browser does not support the canvas element.
+    </canvas>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext('2d');
+        context.fillStyle = "#2c3e50";
+        context.fillRect(0,0,850,400);
+
+        var img = new Image();
+        img.src = "flag.png";
+        /*首先确定位图加载完毕时，再在context上绘制图像*/
+        img.onload = function(){
+            /*restore能够使画布回复到之前所保存的状态*/
+            context.restore();
+            context.drawImage(img, 80,150);
+        };
+        /*save能够保存当亲canvas的状态*/
+        context.save();
+        /*在canvas中国绘制文字，用filltext*/
+        context.fillStyle = "#FFF";
+
+        context.rotate(5*Math.PI*2/180);
+        /*绘制标题*/
+        context.font = '48px georgia';
+        context.fillText("This is a canvas", 230,200);
+        /*绘制文字*/
+        context.font='21px georgia';
+        context.fillText("Happiness is a way station between too much and too little",230,250);
+
+        /*将画布旋转5度，发现图像旋转文字不变,将此句放到文字之前发生旋转
+        context.rotate(5*Math.PI*2/180);
+        */
+    </script>
+</body>
+</html>
+
+<!--
+    画布旋转，图片不懂，只旋转文字
+    1、在img.onload中添加restore表示画布可以回复到之前的状态
+    2、在绘制文字之前添加save函数表示保存当前画布的状态，并添加ratate函数进行旋转
+-->

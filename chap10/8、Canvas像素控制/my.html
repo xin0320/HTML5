@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        html, body {
+            height:100%;
+            margin:20px;
+            padding:0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="500">
+        Your browser does not support the canvas element.   
+    </canvas>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+
+        var img = new Image();
+        img.src = "bg.jpg";
+        img.onload = function(){
+            /*添加800 和 500 两个参数控制img的大小*/
+            context.drawImage(img, 0, 0, 500,300);
+            /*使用getImageData获取位图的像素字节数据，并将数据返回给img对象*/
+            img = context.getImageData();
+
+            var picLength = 500*300;
+
+            for(var i = 0; i  < picLength*4; i += 4){
+                /*取出红绿蓝和透明度*/
+                var myRed = imgData.data[i];
+                var myGreen = imgData.data[i+1];
+                var myBlue = imgData.data[i+2];
+                var alpha = imgData.data[i+3];
+
+                var myGray = parseInt((myRed+myGreen+myBlue)/3);
+                img.data[i] = myGray;
+				img.data[i + 1] = myGray;
+				img.data[i + 2] = myGray;
+                img.data[i + 3] = 80;
+            }
+
+            /*重新绘制img位图*/
+            context.putImageData(img,0,0);
+        };
+    </script>
+</body>
+</html>

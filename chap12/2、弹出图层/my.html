@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        html,body{
+            height: 100%;
+        }
+
+        body{
+            background: #E67E22;
+            margin: 100px;
+            font-family: "Helvetica Neue";
+        }
+
+        p{
+            font-size: 24px;
+            color: bgra(255,255,255,.6);
+        }
+
+        a{
+            color: #E67E22;
+            background: white;
+            padding: 0 5px;
+            border-radius: 3px;
+            text-decoration: none;
+
+            /*设置动画*/
+            transition: all 5s;
+        }
+
+        a:hover{
+            background:rgba(255,255,255,.9);
+        }
+
+        /*POPUP和popup-bg都是占满整个屏幕的，只有popup-content是弹出的白色矩形区域*/
+        #popup{
+           /*不会跟随页面的滚动而滚动*/ 
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            /*大小固定为100%？？？*/
+            width:100%;
+	        height:100%;
+        }
+
+        #popup-content{
+            background: white;
+            /*设置定位方式为绝对定位并设置较高的优先级，使其浮于其他元素的上方*/
+            z-index: 200;
+            position: absolute;
+
+            /*设置元素的大小*/
+            width: 700px;
+            height: 400px;
+            box-sizing: border-box;
+
+            /*使元素居中显示*/
+            left: 50%;
+            top: 50%;
+            padding: 30px 50px;
+
+            /*设置背景阴影等外观样式*/
+            background: white;
+            box-shadow: 0 10px 15px rgba(0,0,0,.2);
+            text-align: center;
+
+
+            margin-left:-350px;
+	        margin-top:-200px;
+ 
+        }
+
+        #popup-content h1{
+	        color:#555;
+	        padding-bottom:20px;
+	        border-bottom:1px solid #DDD;
+        }
+        #popup-content p{
+	        color:#888;
+	        font-size:21px;
+        }
+        #popup-content button{
+	        color:#FFF;
+	        background:#E74C3C;
+	        border-radius:4px;
+	        border:0;
+	        font-size:21px;
+	        padding:10px 50px;
+        }
+        #popup-content button:hover{
+	        background:#C0392B;
+        }
+        #popup-bg{
+	        position:absolute;
+	        z-index:100;
+	        width:100%;
+	        height:100%;
+	        background:rgba(0,0,0,.3);
+        }
+
+        /*设置弹出图层
+            1、使用opacity：设置为0的时候元素虽然看不见，但是仍然存在，且优先级大于文字，会盖住下方的文字
+            2、使用display：none，这一做法可以有效的隐藏元素，但是元素及其子元素的css动画效果全部消失，
+            这就意味着弹出图层将那瞬间显示或消失，无法做出动画效果
+            3、visibility+opacity：visibility从显示到隐藏式一个渐变的过程
+        
+        */
+
+        #popup{
+            transition:all .5s;
+            visibility: hidden;
+            opacity: 0;
+            
+        }
+
+        #popup.show{
+            visibility: visible;
+            opacity: 1;
+            
+        }
+
+        /*使popup元素弹出的时候有从下到上飞入的效果*/
+        #popup-content{
+	        transition:all .5s;
+	        -webkit-transition:all .5s;
+	        transform:translateY(100px);
+	        -webkit-transform:translateY(100px);
+        }
+        #popup-content.show{
+	        transform:translateY(0px);
+	        -webkit-transform:translateY(0px);
+        }
+    </style>
+</head>
+<body>
+    <p>Sed pharetra aliquet tempus. Pellentesque <a href="">pretium</a> felis a orci cursus tempus. Sed eu justo non est placerat tempor non vel dolor. Aenean in cursus massa, suscipit <a href="">elementum</a> nunc. Donec pulvinar lacus ut lacus <a href="">fermentum malesuada</a>. Duis vitae magna risus. Nulla quam sapien, dapibus in facilisis ac, volutpat eu orci.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+<p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+
+<!--
+    popup-content容纳了弹出图层的主要内容，
+    popup-bg将作为整体个弹出图层下方的罩色模块,罩住整个body
+-->
+
+<div id="popup">
+    <div id="popup-content">
+      <h1>This is a pop-up window</h1>
+      <p>Vivamus pharetra ante at posuere ultricies. Etiam mi ipsum, blandit ac semper vitae, accumsan egestas velit. Maecenas aliquam ac nibh in eleifend. Nullam vel viverra purus, non accumsan mauris. Integer dignissim lorem blandit ornare. Proin consequat ante ac dolor imperdiet, in venenatis lectus faucibus. Praesent orci elit, pellentesque et dignissim non. </p>
+      <button id="close">Close me</button>
+    </div>
+    <div id="popup-bg"></div>
+  </div>
+
+  <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+  <script type="text/javascript">
+  //使得鼠标单击a元素，close关闭按钮和pop-up(与pop-up之间走优先级)可以关闭popup
+    $(document).ready(function(){
+        $("a, #close, #popup-bg").click(function(e){
+            //阻止默认的点击事件
+            e.preventDefault();
+            //使用toggleClass切换是否出现
+            $("#popup").toggleClass('show');
+            $('#popup-content').toggleClass('show');
+        });
+    });
+  </script>
+
+</body>
+</html>

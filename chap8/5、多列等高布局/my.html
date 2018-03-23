@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            margin: 50px;
+            	
+        }
+        #container{
+            width: 100%;
+            overflow: hidden;
+            /* 
+                隐藏高度不同的列的方法：
+                padding-bottom: 500px;
+                margin-bottom: -500px;
+                以上两句使得画面的实际高度不变，但是背景告诉依然为800px；
+                overflow: hidden;
+                之后利用overflow将背景之外的高度隐藏
+            */
+        }
+
+        .col{
+            color: white;
+            padding: 20px;
+            background-color: rgb(46, 174, 248);
+            font-family: 'Times New Roman', Times, serif;
+            width: 33.33%;
+            float: left;
+            box-sizing: border-box;
+            text-align: center;
+            padding-bottom: 500px;
+            margin-bottom: -500px;
+        }
+        
+       .col img{
+            padding-top: 20px;
+            padding-bottom: 10px;
+            width: 30%;
+
+        }
+
+        .col h1{
+           
+            font-size: 100px;
+        }
+
+        .col p{
+            font-size: 60px;
+        }
+
+        .col:nth-child(2){
+            background-color: rgb(128, 184, 233);
+        }
+
+        .col:nth-child(3){
+            background-color: rgb(146, 200, 247);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="col">
+          <img src="trend.png">
+          <h1>Trend</h1>
+          <p>The tool refers to periodic trends for collecting and analyzing weak signals and trends in chemistry.</p>
+        </div>
+        <div class="col">
+          <img src="user.png">
+          <h1>User</h1>
+          <p>User namespaces are now fully implemented as of document is obsolete.</p>
+        </div>
+        <div class="col">
+          <img src="picture.png">
+          <h1>Picture</h1>
+          <p>Taking good pictures is something anyone can do with any camera, if you practice enough and avoid some common mistakes..</p>
+        </div>
+      </div>
+</body>
+</html>

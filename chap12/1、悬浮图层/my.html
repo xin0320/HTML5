@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body{
+            background: #27AE60;
+            font-family:"Helvetica Neue", sans-serif;
+
+        }
+
+        h1{
+            font-size: 81px;
+            color: white;
+            text-transform: uppercase;
+            padding-bottom:30px;
+            border-bottom:1px solid rgba(255,255,255,.4);
+            text-align: center;
+
+            margin:50px auto 30px;
+            font-weight:600;
+        }
+
+        h2{
+            font-size: 26px;
+            font-weight: normal;
+            color: rgba(255,255,255,.7);
+            margin:50px auto 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,.4);
+
+        }
+
+        p{
+            font-size:18px;
+            color:#FFF;
+            line-height:1.4;
+            margin-bottom:30px;
+        }
+
+        #content{
+	        padding:10px 15%;
+        }
+        img{
+            float: left;
+            padding: 20px;
+            margin-right: 20px;
+            
+            border: 1px solid rgba(255,255,255,.6);
+            background: rgba(255,255,255,.4);
+        }
+
+        img.right{
+	        margin-left:20px;
+	        margin-right:0;
+	        float:right;
+        }  
+
+        #top{
+            /*大小位置*/
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            right: 50px;
+            bottom: 50px;
+
+            padding-top: 25px;
+            box-sizing: border-box;
+            /*保证top放入优先级*/
+            z-index: 5000;
+
+            /*边框背景设置*/
+            background: rgba(255,255,255,.2);
+            border: 1px solid rgba(255,255,255,.6);
+            /*字体设置*/
+            color: white;
+            font-weight: 500px;
+            text-align: center;
+            text-transform:uppercase;
+            /*手势*/
+            cursor: pointer;
+
+             /*页面滚动到一定的高度才会显示*/
+            opacity: 0;
+            transition: all 1s;
+
+        }
+
+        #top::after{
+            /*类似对话框的实现*/
+            content: '';
+            width: 0;
+            height: 0;
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+
+            /*位置*/
+            position: absolute;
+            top: 0%;
+            left: 35%;
+
+           
+        }
+
+        #top.show{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vestibulum etante</h1>
+<section id="content">
+<article>
+<img src="p1.jpg">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+<p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+</article>
+<article>
+<h2>Profile</h2>
+<img src="p2.jpg" class="right">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+<p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+</article>
+<article>
+<h2>Events</h2>
+<img src="p3.jpg">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+<p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+</article>
+<article>
+<h2>Service</h2>
+<img src="p4.jpg" class="right">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+<p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+</article>
+<article>
+<h2>Contact</h2>
+<img src="p5.jpg">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+<p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+</article>
+</section>
+<div id="top">Top</div>
+<script type="text/javascript">
+    var nav = document.getElementById("top");
+
+    window.onscroll = function(){
+        var scrollTop = document.body.scrollTop;
+
+        if(scrollTop > 200){
+            nav.className = "show";
+        }else{
+            nav.className = " ";
+        }
+
+        nav.onclick = function(e){
+            document.body.scrollTop = 0;
+        }
+    }
+</script>
+</body>
+</html>

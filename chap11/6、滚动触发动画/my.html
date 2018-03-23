@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background: url(bg.jpg) no-repeat 50% 0;
+            background-size: cover;
+        }
+        /*三个slogan的最初的样式*/
+        #slogan1, #slogan2, #slogan3{
+            position: relative;
+            height: 800px;
+        }
+
+        #slogan1{
+            padding-top: 400px;
+            text-align: center;
+        }
+
+        #slogan1 h1{
+            font-size: 81px;
+            text-transform: uppercase;
+        }
+
+        #slogan1 h2{
+            font-size: 32px;
+            font-weight: 50;
+            line-height: 5;
+             
+        }
+
+        #slogan2{
+            padding-top: 400px;
+            text-align: center;
+        }
+        #slogan2 h1{
+            font-size: 81px;
+            text-transform: uppercase;
+            /*设置为block的时候边距等于屏幕的宽度，之后inline-block是合适的*/
+            display: inline-block;
+            border-top: solid 3px white;
+            border-bottom: solid 3px white;
+            padding: 10px 0;
+
+            -webkit-backface-visibility:hidden;
+        }
+
+        #slogan2 h2{
+            font-size: 32px;
+            font-weight: 50;
+            line-height: 5;
+
+            -webkit-backface-visibility:hidden;
+             
+        }
+
+      /**
+        slogan3的图片位置采用绝对定位的方式，便于只有在script中调整图片的位置
+      **/
+
+      #slogan3 h1{
+          position: absolute;
+          font-size: 72px;
+          left: 10%;
+          top: 40%;
+      }
+
+      #slogan3 h2{
+          position: absolute;
+          font-size: 24px;
+          left: 10%;
+          /*有图h2较长，所以为其固定宽度*/
+          width: 650px;
+          top: 400px;
+          padding-top: 30px;
+      }
+
+      #slogan3 img{
+          position: absolute;
+          left: 60%;
+          top: 300px;
+      }
+
+      /*为三个slogan设计动画部分
+      slogan1： 最初透明度为0，并设计show类，经透明度设置为1
+      */
+
+    #slogan1{
+       opacity: 0; 
+       /*不要忘记设置动画,延迟0.5秒播放动画，动画时长为2s,此句放在show中也可*/
+       transition: all 2s .5s;
+    }
+
+    #slogan1.show{
+        opacity: .8;
+        transition: all 2s .5s;
+    }
+    /*为slogan2定义滚动的动画*/
+    #slogan2 h1{
+        opacity: 0;
+        transform: scaleY(0);
+        transition: all 1s;
+    }
+
+    #slogan2 h2{
+        opacity: 0;
+        transform: scaleX(0);
+        transition: all .5s;
+    }
+
+    #slogan2 h1.scrolled{
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    #slogan2 h2.scrolled{
+        opacity: 1;
+        transform: scaleX(1);
+    }
+
+    #slogan3 h1{
+        opacity: 0;
+        transform: translateX(-200px);
+        transition:all 1.5s;
+    }
+
+    #slogan3 h2{
+        opacity: 0;
+        transform: translateX(200px);
+        -webkit-transition:all 1.5s .25s;
+    }
+
+    #slogan3 img{
+        opacity: 0;
+        transform:translateX(200px);
+        transition:all 1.5s .5s;
+    }
+
+    #slogan3 h1.scrolled, #slogan3 h2.scrolled, #slogan3 img.scrolled{
+        opacity: 1;
+        /*将h1和h2在y轴上的位移归零，变为初等样式*/
+        transform:translateX(0px); 
+         
+    }
+    </style>
+</head>
+<body>
+        <div id="slogan1">
+                <h1>Donec fringilla</h1>
+                <h2>Aenean cursus metus nec sem aliquet maximus in ut felis. </h2>
+              </div>
+              <div id="slogan2">
+                <h1>Pellentesque</h1>
+                <h2>Mauris tortor enim vehicula ac blandit varius semper non lacus.</h2>
+              </div>
+              <div id="slogan3">
+                <h1>Vestibulum</h1>
+                <h2>Class aptent taciti sociosqu ad litora torquent per inceptos himenaeos.</h2>
+                <img src="car.png" alt="car">
+              </div>
+</body>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        /*为slogan1 添加自定义类*/
+        $('#slogan1').addClass('show');
+
+        /*获取当前滚动位置和slogan2的顶部坐标，当前者大于后者时，说明已经滚动到了slogan2的范围，输出为1200  1600*/
+        var slogan2_y = $("#slogan2").offset().top;
+
+        var slogan3_y = $('#slogan3').offset().top;
+        console.log(slogan2_y+"  "+slogan3_y);
+        var buffer = 200;
+
+        $(window).scroll(function(event){
+            /*次数忘记计算屏幕的高度了，此处高度用于滚动到其他模块的时候，去除之前模块的scrolled类 输出为950*/
+            var windowHeight = $(window).height();
+            console.log(windowHeight+"aaaaa");
+            var pos = $(window).scrollTop();
+            if(pos > slogan2_y-buffer){
+                $("#slogan2 > h1").addClass('scrolled');
+                $("#slogan2 > h2").addClass('scrolled');
+            }
+            if(pos < slogan2_y-windowHeight+buffer){
+				$('#slogan2 > h1').removeClass('scrolled');
+				$('#slogan2 > h2').removeClass('scrolled');
+			}
+			if(pos > slogan3_y-buffer){
+				$('#slogan3 > h1').addClass('scrolled');
+				$('#slogan3 > h2').addClass('scrolled');
+				$('#slogan3 > img').addClass('scrolled');
+			}
+			if(pos < slogan3_y-windowHeight+buffer){
+				$('#slogan3 > h1').removeClass('scrolled');
+				$('#slogan3 > h2').removeClass('scrolled');
+				$('#slogan3 > img').removeClass('scrolled');
+			}
+        });
+         
+    });
+</script>
+</html>

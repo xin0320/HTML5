@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        html, body{
+	        height:100%;  /*加上这一句画面才出来，之前没有画面*/
+        }
+        body{
+            margin: 0%;
+            padding: 0%;
+            position: relative;
+            height: 100%;
+            overflow: hidden; /*使得超出屏幕放入部分不显示*/
+            /* 设置3D效果，首先为body元素设置3D 动画的透视效果*/
+            perspective: 1500px;
+        }
+
+        article{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            color: white;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0%;
+            box-sizing: border-box;
+
+            /*设置transition动画*/
+            transition: all  1s ease-in-out;  
+
+            /*设置翻面后隐藏*/
+            backface-visibility: hidden;         
+        }
+
+        #tablet{
+            background-color: brown;
+           /*left 属性为0，默认显示在屏幕中*/
+           /* left: 0; */
+
+           /* top: 0%;*/
+            
+           transform: scale(1,1);
+
+           transform: rotateY(0deg) scale(1,1);
+        }
+
+        #wifi{
+            background-color: rgb(43, 197, 56);
+            /*left 为100% ，位于浏览器的右侧，默认不显示*/
+            /*left: 100%;*/
+            /*top: 100%;*/
+            transform: scale(0,0);
+            transform: rotateY(180deg) scale(0,0);
+        }
+
+        img{
+            margin: 50px;
+        }
+        h1{
+            font-size: 32px;
+            margin: 50px;
+        }
+
+        p{
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        a{
+            font-family: 'Times New Roman', Times, serif;
+            color: white;
+            font-size: 20px;
+            border: solid 1px white;
+            border-radius: 3px;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+
+        /* move 的定义*/
+        #tablet.move{
+          /*  left: -100%; */
+          /*top:-100%;*/
+          transform: scale(0,0);
+          transform: rotateY(-180deg) scale(0,0);
+        }
+         
+        #wifi.move{
+            /*left: 0%;*/
+           /* top: 0%; */
+           transform: scale(1,1);
+           transform: rotateY(0deg) scale(1,1);
+        }
+    </style>
+</head>
+<body>
+    <article id="tablet">
+        <img src="tablet.png" alt="tablet">
+        <h1>Comprehensam</h1>
+        <p>Mel homero labores ce maluisset sententiae qui, mucius epicuri reprimique et cum, sumo saperet laboramus et pri. An ignota incorrupte quo, ex his dicta nominavi, erat consulatu eum cu. Eum ea illum assum dictas, tincidunt reprimique est eu. Nostro voluptatum id has, velit bonorum sanctus an his. Ea per esse volumus albucius, ut qui ipsum labitur expetendis. Has meis nonumes dissentiunt ad, mel atqui oblique aliquam te.</p>
+        <a href="#wifi">Next</a>
+      </article>
+      <article id="wifi">
+        <img src="wifi.png" alt="wifi">
+        <h1>Adversarium</h1>
+        <p>Ea qui graece facilisi persequeris. Ne est quodsi atomorum, ex cum argumentum definitionem, vim no iudico oportere constituam. No mei vide utamur mandamus, duo ne ignota convenire sadipscing. An sed cibo albucius appetere, est at putent labores delicatissimi. Ne prima moderatius adversarium duo, autem forensibus dissentiet nec ne. Copiosae similique ex qui.</p>
+        <a href="#tablet">Next</a>
+      </article>
+
+      <script src="jquery-2.1.4.min.js" type="text/javascript"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('a').click(function(e){
+                e.preventDefault();
+                /*是toggleClass，不是toggle*/
+                $('#tablet').toggleClass('move');
+                $('#wifi').toggleClass('move');
+            });
+        });
+      </script>
+</body>
+</html>
+
+
+
+<!--
+    根据绝对定位，设置body的position为relative，并设置两个artical的position为absolute
+    根据left进行定位
+
+    在article中设置transition: all 1s ease-in-out，并设置翻面后的隐藏
+
+    单独定义body的height为100%
+
+    定义tablet和wifi的mov动画，并在js中利用toggleClass进行转换
+
+
+
+
+-->

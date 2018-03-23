@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body{
+            margin: 50px;
+        }
+        .row{
+            background-color: black;
+            width: 100%;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin: 20px;
+            color: white;
+            position: relative;
+
+            /* 空出右侧300px，出现黑色区域,*/
+            box-sizing: border-box;
+            padding-right: 300px;
+            
+           
+        }
+
+        .row .side{
+            box-sizing: border-box;
+            background-color: rgb(231, 109, 38);
+            width: 300px;
+            height:500px;
+            padding: 20px;
+            /* 对side进行绝对定位，就不会占用文档流，main就会自动上移*/
+            position: absolute; 
+            
+            /*填充黑色区域*/
+            right: 0%;
+        }
+
+        .row .main{
+             
+            width: 100%;
+            height:500px;
+            background-color:  rgb(238, 146, 93);
+
+        
+            
+           
+        }
+
+        .row .side p{
+            font-size: 15px;
+            margin: 10px;
+            padding-bottom: 10px;
+
+        }
+
+        .row .main p{
+            font-size: 20px;
+            margin: 10px;
+            padding-bottom: 50px;
+        }
+
+        .row .main h1{
+            font-size: 82px;
+            margin: 10px;
+        }
+        .row .side img{
+            margin: 20px;
+            padding-top: 50px;
+        }
+
+        .row .main img{
+            padding-top: 100px;
+        }
+        .row .side button{
+            width: 80px;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color:  rgb(219, 233, 23);
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="side">
+          <img src="side.png" alt="order">
+          <p>In restaurants, pizza can be baked in an oven with stone bricks above the heat source, an electric deck oven, a conveyor belt oven or a wood- or coal-fired brick oven.</p>
+          <button>Order</button>
+        </div>
+        <div class="main">
+          <img src="pizza.png" alt="pizza">
+          <h1>Pizza</h1>
+          <p>Various types of ovens are used to cook them and many varieties exist.</p>
+        </div>
+</body>
+</html>
+
+<!--
+    绝对定位法：
+    1、为side和main添加样式
+
+    2、利用position设置side为absolute，使其跳出文档流，完成side对main的覆盖
+
+    3、去除main和side的交叠。在side和main的父类row中设置padding-left：300px，
+    使整个模块空出左侧部分，此时side和main都右移了300px
+
+    4、设置side的绝对定位设置在最左侧，填充左侧黑色部分
+
+    不要忘记为每个模块标记 box-sizing: border-box;
+-->

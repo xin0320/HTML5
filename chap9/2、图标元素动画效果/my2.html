@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            background: #8b8ab3;
+            margin: 50px;
+        }
+
+        @font-face{
+            font-family: 'icon-font';
+            src: url('font/flat-ui-icons-regular.ttf'), url('font/flat-ui-icons-regular.eot'), url('font/flat-ui-icons-regular.woff'), url('font/flat-ui-icons-regular.svg');
+        
+        }
+        .icon{
+            background: white;
+            border: none;
+            border-radius: 50%;
+            /* inline-block 使行内元素变为块元素 */
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 0px;
+            cursor: pointer;
+            /*添加动画
+            -webkit-animation:move 1s linear;
+            animation:move 1s linear;
+            */
+
+            animation: move 1s cubic-bezier(.62,-0.91,.45,1.97);
+            /*
+                animate-full-mode 属性规定了元素在动画之外的状态时怎样的
+                forward， 表示动画完成后保留最后一个关键帧中的属性
+                backword， 表示动画延迟之前就使得元素应用第一个关键帧中的属性
+                both，表示包括forward和backward的两种属性，此例中both和backward皆可
+            */
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both; /*backwards*/
+        }
+        /**为什么用before*/
+        .icon::before{
+            content:"\e609";
+            font-family: 'icon-font';
+            color: #8b8ab3;
+            font-size: 50px;
+         
+           /*content之后通常添加display：block和width和height*/
+            display: block; 
+            text-align: center;
+        }
+        
+        /* 定义图标
+            定义图标的时候添加图标和content
+        */
+        .home::before{
+            content: '\e62e';
+        }
+        .search::before{
+            content: '\e630';
+        }
+        .user::before{
+            content: '\e631';
+        }
+        .mail::before{
+            content: '\e632';
+        }
+        .chat::before{
+            content: '\e62d';
+        }
+        /*定义动画出现的时延*/
+        .home{
+            animation-delay: 0s;
+        }
+        .search{
+            animation-delay: .1s;
+        }
+        .user{
+            animation-delay: .2s;
+        }
+        .mail{
+            animation-delay: .3s;
+        }
+        .chat{
+            animation-delay: .4s;
+        }
+
+        /*定义动画出现的动作，在页面加载时就出现这些动作，所以把move加在icon上
+            自定义动作名为move,之后用animate添加在icon中
+        */
+
+        @keyframes move{
+            from{
+                opacity: 0;
+                transform: translateY(100%);
+            }
+
+            to{
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <span class="home icon">Home</span>
+<span class="search icon">Search</span>
+<span class="user icon">User</span>
+<span class="mail icon">Mail</span>
+<span class="chat icon">Chat</span>
+</body>
+</html>

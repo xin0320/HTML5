@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style type="text/css">
+        html, body {
+            height:100%;
+            margin:0;
+            padding:0;
+        }
+        #myCanvas{
+            background:url(images/bg.png);
+            background-size:cover;
+        }
+        </style>
+</head>
+<body>
+    <canvas id="myCanvas">
+        Your browser does not support the canvas element.
+        </canvas>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        var frameCount = 1;
+        var frameTotal = 12;
+
+        var man = {};
+        var sequence = [];
+
+        man.vx = 0;
+        man.x = 50;
+        man.y = window.innerHeight - 410;
+
+        /*循环加载12帧图像*/
+        for(var i = 1; i  <= frameTotal; i++){
+            loadImg("images/run_"+i+".png");
+        }
+
+        function loadImg(url){
+            var img = new Image();
+            img.src = url;
+            sequence.push(img);
+        }
+
+        function run(e){
+            man.x += man.vx;
+
+            if(man.x > canvas.width){
+                man.x = -300;
+            }
+            if(man.x < -300){
+                man.x = canvas.width;
+            }
+
+            frameCount++;
+            if(frameCount >= frameTotal){
+                frameCount = 1;
+            }
+            context.clearRect(0,0,canvas.width,canvas.height);
+            /*绘制时调用seq中的当前img对象*/
+            context.drawImage(sequence[frameCount],man.x,man.y);
+        }
+        /*很重要，每0.1s播放一帧，没有的话，动画不予显示*/
+        setInterval(run,100);
+        document.onkeydown = function(e){
+            if(e.keyCode == 68){
+                man.vx = 50;
+            }else if(e.keyCode == 65){
+                man.vx = -50;
+            }
+        };
+        document.onkeyup = function(e){
+            man.vx = 0;
+        };
+    </script>
+</body>
+</html>

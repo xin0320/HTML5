@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        @font-face{
+            font-family: 'icon-font';
+            src: url('font/flat-ui-icons-regular.ttf'), url('font/flat-ui-icons-regular.eot'), url('font/flat-ui-icons-regular.woff'), url('font/flat-ui-icons-regular.svg');
+
+        }
+
+        body,html{
+	        font-size: 26px;
+	        font-family: sans-serif;
+            height: 100%; /*便于后续的导航菜单栏在从向上充满屏幕*/
+        }
+
+        /*主区域main和菜单栏side-nav相对于wrapper进行绝对定位*/
+         #wrapper{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /*超出界面的部分进行隐藏，以免出现横向进度条*/
+            overflow: hidden;
+         }
+         /*CCCCCCCCCCCCCCCCCC侧边栏部分CCCCCCCCCCCCCCC*/
+         #side-nav{
+            width: 300px;
+            height: 100%;
+            background: #444;
+             
+            /*将侧边导航置于顶部，并向左移除-300px*/
+            position: absolute;
+            top: 0%;
+            transform: translateX(-300px);
+            transition: .5s ease all;
+         }
+
+         #close-slide-nav{
+            font-size: 10px;
+            color: white;
+            
+            display: block;
+            /*使用float失败*/
+            text-align: right;
+            line-height: 60px;
+            height: 60px;
+            padding-right: 20px;
+          
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,.3);
+
+            position: relative;
+         }
+
+         #close-slide-nav::before{
+            font-family: 'icon-font';
+	        content: "\e609";
+	        font-size: .85em;
+            position: absolute;
+            top: 0%;
+            right: 18%;
+         }
+        
+         #side-nav ul li{
+            font-size: 28px;
+             
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,.3);
+            color: rgba(255,255,255,.7);
+            position: relative;
+            text-align: center;
+         }
+
+         #side-nav ul li::before{
+             /*不要忘了引入字体*/
+            font-family: 'icon-font';
+            font-size: .85em;
+            position: absolute;
+            top: 30%;
+            left: 15%;
+         }
+         #side-nav ul li:nth-child(1)::before{ 
+            content: "\e62e";    
+         }
+
+         #side-nav ul li:nth-child(2)::before{ 
+            content: "\e62d"; 
+         }
+
+         #side-nav ul li:nth-child(3)::before{ 
+            content: "\e640";   
+         }
+
+         #side-nav ul li:nth-child(4)::before{ 
+            content: "\e631"; 
+         }
+
+         /*CCCCCCCCCCCCCCCCCCmain部分CCCCCCCCCCCCCCC*/
+         #main{
+             margin: 50px;
+         }
+
+         #main-nav{
+            
+            padding-bottom: 30px;
+            
+            border-bottom: 1px solid rgba(0,0,0,.7);
+            padding-left: 40px;
+            position: relative;
+         }
+
+         #main-nav #off-canvas-menu{
+            color: rgba(0,0,0,.7);
+            font-size: 35px;
+            text-decoration: none;
+         }
+
+         /*Menu之前的三道横线用box-show来实现*/
+
+         #off-canvas-menu::before{
+             content: '';
+             position: absolute;
+             left: 0%;
+             top: 0%;
+             width: .75em;
+            box-shadow: 0 10px 0 2px #999, 0 20px 0 2px #999, 0 30px 0 2px #999;
+         }
+
+         #content {
+	        background: #E74C3C;
+	        padding: 80px 50px;
+	        margin-top: 40px;
+        }
+
+
+        h1 {
+	        color: #fff;
+	        font-size: 81px;
+	        text-transform: uppercase;
+	        text-align: center;
+        }
+        p {
+	        color: rgba(255,255,255,.7);
+	        text-align: center;
+        }
+
+
+        /*点击菜单后，侧边栏菜单沿x轴右移 -300px --> 0px*/
+        #side-nav.off-display{
+            transform: translateX(0px);
+        }
+
+        /*点击菜单后，mian内容也向右移动300px, 0px --> 300px*/
+        #mian.off-display{
+            transform: translateX(300px);
+        }
+    </style>
+
+    
+</head>
+<body>
+    <div id="wrapper">
+        <div id="main">
+          <div id="main-nav"><a href="" id="off-canvas-menu">Menu</a></div>
+          <div id="content">
+            <h1>Off-canvas menu</h1>
+            <p>Off-canvas menus are positioned outside of the viewport and slide in when activated. Setting up an off-canvas layout in HTML5 is super easy.</p>
+          </div>
+        </div>
+        <div id="side-nav"> <a href="" id="close-slide-nav">Close</a>
+          <ul>
+            <li>Home</li>
+            <li>Events</li>
+            <li>Store</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+      </div> 
+
+      <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+      <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('#main-nav, #close-slide-nav').click(function(event){
+                event.preventDefault();
+                $('#main,#side-nav').toggleClass("off-display");
+            });
+        });
+        
+      </script>
+</body>
+</html>

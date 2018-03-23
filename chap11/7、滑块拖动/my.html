@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            background: #006b9d;
+        }
+
+        #verify{
+            background: url(bg.png);
+            width: 508px;
+            height: 532px;
+            margin: 50px auto; /*上下边距为50px，左右边距自动形成，形成水平方向的居中显示*/
+            position: absolute;
+        }
+
+        #drag{
+            width: 171px;
+            height: 140px;
+            position: absolute;
+            /*top为185px，left为156时重合*/
+            top: 185px;
+            left: 0px;
+            background: url(drag.png);
+        }
+
+        #dot{
+            width: 29px;
+            height: 29px;
+            background: url(dot.png);
+            position: absolute;
+            top: 460px;
+            left: 70px;
+        }
+
+        #success{
+            position: absolute;
+            font-size: 32px;
+            top: 130px;
+            right: 0px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            columns: #fff;
+            background: #C33;
+            padding: 5px 20px;
+            /*隐藏，拖拽成功时才出现*/
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="verify">
+        <div id="drag"></div>
+        <div id="dot"></div>
+        <p id="success">Success!</p>
+      </div>
+
+      <script type="text/javascript">
+        var max = 350;
+        var final = 156;
+        var buffer = 7;
+        var drag = document.getElementById("drag");
+        var dot = document.getElementById("dot");
+        var success = document.getElementById("success");
+
+        var dotStart = dot.offsetLeft;
+        var dragStart = drag.offsetLeft;
+
+        drag.style.left = -Math.random()* 200+drag.offsetLeft+"px";
+
+        dot.onmousedown = function(e){
+            var startX = e.clientX;
+            /*dotLeft与dotStart不同，dotLeft有可能是第二次或某一次按下时的坐标，和dotStart的坐标不同，每次刷新界面时，dotStart都会重置为初始值*/
+            var dotLeft = dot.offsetLeft;
+
+            document.onmousemove=function(e){
+                /*由dot的移动的距离to来改变dot自身和drag的位置*/
+                var move = e.clientX - startX;
+                var to = move + dotStart;
+                /*如果目标的位置大于最右侧的位置就停留在最右侧，如果dot的位置小于其实坐标，就停留在最左侧
+                    max为进度条的长度
+                */
+                if(to > dotStart+max){
+                    to = dotStart+max;
+                
+                }else if(to < dotStart){
+                    to = dotStart;
+                }
+
+                dot.style.left = to +"px";
+                drag.style.left = (dragStart+to-dotStart)+"px";
+            }
+
+            document.onmouseup = function(e){
+                /*不要忘记对之前事件的监听*/
+                this.onmousemove = null;
+                if(Math.abs(drag.offsetLeft-final) < buffer){
+                    success.style.display = "block";
+                }else{
+                    success.style.display = "none";
+                }
+            }
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body{
+            margin: 50px;
+            background-color:#95A5A6;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #container{
+            width: 960px;
+            /*将左右两侧的margin设置为auto，以水平居中*/
+            margin: 0 auto;
+        }
+
+        /*实现瀑布流效果 */
+        .col{
+            /* 列数为3，列与列之间的间隙为10，fill代表按顺序对列进行填充*/
+            column-count: 3;
+            column-gap: 15px;
+            column-fill: auto;
+        }
+        
+        /* 为每个内容块设置效果*/
+        .pic{
+            box-sizing: border-box;
+            padding: 20px;  /*文字图像与边框之间的距离*/
+            background: white;
+            width: 300px;
+            box-shadow: 0 0 5px rgba(0,0,0,.5); /*设置边框*/
+            margin-bottom:20px; /*每个pic之间的距离*/
+            /*pic内有img和p与元素，display:inline-block 可视为块级元素和行内元素的结合
+                解决了图片和文字分离的情况
+            */
+            display: inline-block;
+            
+        }
+
+        .pic img{
+            width: 260px;
+           
+        }
+    </style>
+</head>
+<body>
+        <div id="container">
+                <div class="col">
+                  <div class="pic">
+                    <img src="images/1.jpg">
+                    <p>In sagittis sit amet lacus non luctus. In hac habitasse platea dictumst. Donec consequat felis odio, non mollis ipsum dictum blandit.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/2.jpg">
+                    <p>Vestibulum sapien elit, malesuada in augue quis, ultrices volutpat massa.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/3.jpg">
+                    <p>Aliquam ut euismod mi. Suspendisse nec justo tincidunt, cursus mauris in, ullamcorper mauris.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/4.jpg">
+                    <p>Fusce maximus odio in dolor iaculis, finibus pulvinar nisl blandit.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/5.jpg">
+                    <p>Cras pretium interdum orci eu mollis.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/6.jpg">
+                    <p>Maecenas at urna pellentesque, suscipit massa et, mattis odio. Duis quis egestas ligula, quis faucibus felis.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/7.jpg">
+                    <p>Integer quis justo ornare, tempor purus at, efficitur justo.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/8.jpg">
+                    <p>Sed libero lectus, mollis non feugiat sed, viverra at dolor.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/9.jpg">
+                    <p>Mauris mattis orci a ligula molestie consequat.</p>
+                  </div>
+                  <div class="pic">
+                    <img src="images/10.jpg">
+                    <p>Aenean quis quam ac ex viverra pulvinar nec non lectus.</p>
+                  </div>
+                </div>
+              </div>
+    
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        section{
+            width:980px;
+            background-color: #f5f5f5;
+            padding: 50px;
+            margin: 50px;
+            box-sizing: border-box;
+            box-shadow: 0 0 1px rgba(0,0,0, .4);
+          
+        }
+        /* 出现问题，浮动之后样式都消失了
+           我们将article加以浮动时，他们就从文档流中抽去了，变为浮动在文档流之上，文档也失去了
+           自身的高度，此时需要清除浮动
+           在父元素(section)中添加一个不浮动的子元素来消除浮动带来的影响，通常用:::after来完成
+        */
+
+        section::after{
+            content: "";
+            display: table;
+            clear: both;
+
+        }
+        article{
+            float: left;
+            width: 49%;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            position: relative;
+            
+        }
+
+        article:first-child{
+            margin-right: 2%;
+        }
+      
+        img{
+            position: absolute;  
+            left: 0%;
+            top: 0%;
+        }
+        h1{
+             
+            font-weight: bold;
+            font-size: 32px;
+            padding-top: 10px;
+            position: absolute;
+            left: 34%;
+            top: -42%;
+            
+        }
+
+/**
+        article是浮动的，其子元素img,h1,p不能全部是absolute，不懂为什么？
+        可以将h1和p整体向右缩进之后，在对img进行绝对定位
+
+        h1, p{
+	            width:65%;
+	            margin-left:35%;
+	            font-family:Georgia, "Times New Roman", Times, serif;
+            }
+*/
+
+
+        p{
+            
+            font-size: 15px;
+            padding-top: 22px;
+            margin-left:34%; 
+          
+            width: 65%;
+           
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <section>
+        <article>
+          <h1>Rip Van winkle</h1>
+          <p>Many years ago, at the foothills of the Kaatskill (Kat-skill) mountains, was a little village. In the village lived a simple, good-natured fellow named Rip Van Winkle. He was a kind neighbour, ready to help anyone. </p>
+          <img src="head1.png" alt="picture of Rip Van winkle">
+        </article>
+        <article>
+          <h1>Robinson Crusoe</h1>
+          <p>As Rip and his companion reached them, they stopped playing and stared at Rip with a fixed gaze. Rip was really frightened. His companion emptied the contents of the barrel into glasses and made Rip drink it.</p>
+          <img src="head2.png" alt="picture of Rip Van winkle">
+        </article>
+      </section>
+</body>
+</html>

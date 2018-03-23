@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background: #4ea980;
+            margin: 50px;
+        }
+
+        .loader{
+            text-indent: -9999em;
+            width: 200px;
+            height: 200px;
+            /*设置内部阴影，颜色为白色，宽度为15px
+                使用box-shadow而不使用border，是因为box-shadow不影响div内部元素的定位
+            */
+            box-shadow: inset 0 0 0 15px #ffffff;
+            border-radius: 50%;
+
+            /* 设置position用来定义半圆的时候使用 */
+            position: relative;
+
+            /*制作渐变的尾巴的效果*/
+            
+        }
+
+        /*我们只需要半圆，为div设置一个before伪元素盖住其中的半圆*/
+
+        .loader::before{
+            position: absolute;
+            content: '';
+            width: 100px;
+            height: 200px;
+            background: #4ea980;/*设置为与背景色相同的颜色，此时为长方形*/
+            left: 100px;
+
+            /*将长方形设置为半圆,因为是长方形，不能直接设置radius为50%
+                上右下左，设置上部和右侧圆角为0像素，其余两侧为200px；
+            */
+            border-radius: 0 200px 200px 0;
+
+            /*添加动画*/
+            animation: load-effect 2s infinite;
+
+            /* 手动设置圆心的旋转中心*/
+
+            transform-origin: 0px 100px;
+        }
+
+        /*半圆绘制完成之后，我们还需要为缺失的部分加入一定透明度的半圆
+            使用after，其层级高于before，不会被背景色盖住
+        */
+
+        .loader::after{
+            /* 不要忘记设置position*/
+            position: absolute;
+            content: '';
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            /*定位*/
+            left: 0%;
+            /*设置内部阴影为15像素宽，透明度为20%的白色*/
+            box-shadow: inset 0 0 0 15px rgba(0, 0, 0, .2);
+        }
+
+        /*制动画，定义好关键帧,用animation进行引用，添加在before中*/
+        @keyframes load-effect{
+            0%{
+                transform: rotate(0deg);
+            }
+
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+     
+
+    </style>
+</head>
+<body>
+    <div class="loader">Loading...</div>
+</body>
+</html>

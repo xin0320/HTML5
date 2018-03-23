@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            background: #F39C12;
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        h1{
+            color: rgba(255,255,255,.9);
+            font-size: 64px;
+            text-align: center;
+            /*居中*/
+            margin: 50px auto;
+        }
+
+        #nav{
+            background: white;
+            width: 100%;
+            /*给nav设置高度是为了防止切换的过程中高度的突然塌陷*/
+            height: 70px;
+            text-align: center;
+            min-width: 960px;
+        }
+
+        #page-nav{
+            
+            background: white;
+            display: block;
+            padding: 5px 400px;
+            
+        }
+
+        #page-nav li{
+            display: block;
+            float: left;
+            
+        }
+
+        #page-nav li a{
+            display: block;
+            color: #F39C12;
+            font-size: 28px;
+           
+            text-decoration: none;
+            /*块中才可以定义padding上下的属性*/
+           
+            padding: 10px 65px;
+        }
+
+       
+
+        #content h2{
+            color: rgba(255,255,255,.6);
+            padding: 30px;
+            padding-left: 0%;
+            font-size: 32px;
+        
+            border-bottom: 1px solid rgba(255,255,255,.6);
+            margin-bottom: 40px;
+        }
+
+
+        #content{
+            padding: 30px 300px;
+            box-sizing: border-box;
+        }
+
+        img{
+            float: left;
+            background: rgba(255,255,255,.6);
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        img.right{
+            float: right;
+            background: rgba(255,255,255,.6);
+            padding: 10px;
+            margin-left: 5px;
+        }
+
+        #content p{
+            color: white;
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+
+        /*为菜单制作一个名为fixed的类，并设置position为fixed
+            top=0，使菜单固定在页面的顶部。
+            position切换为绝对定位后，要重新制定容器的宽度，否则菜单不能
+            横向充满整个屏幕
+        */
+
+        #page-nav.fixed{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: block;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>A Pizza Website</h1>
+    <nav id="nav">
+      <ul id="page-nav">
+        <li><a href="">Home</a></li>
+        <li><a href="">Profile</a></li>
+        <li><a href="">Events</a></li>
+        <li><a href="">Service</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+    </nav>
+    <section id="content">
+      <article>
+        <h2>Home</h2>
+        <img src="p1.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+        <p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+      </article>
+      <article>
+        <h2>Profile</h2>
+        <img src="p2.jpg" class="right">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+        <p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+      </article>
+      <article>
+      <h2>Events</h2>
+        <img src="p3.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+        <p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+      </article>
+      <article>
+      <h2>Service</h2>
+        <img src="p4.jpg" class="right">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+        <p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+      </article>
+      <article>
+      <h2>Contact</h2>
+        <img src="p5.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros purus, suscipit finibus congue sit amet, fringilla eu arcu. Vestibulum pellentesque lacus vitae fermentum vulputate. Aliquam pharetra felis eu tempus imperdiet. Proin ultrices justo turpis, et fermentum sapien porttitor quis. Phasellus mauris enim, facilisis at purus vel, dignissim aliquet quam. Fusce quis nulla non tortor hendrerit congue. Cras convallis tellus a tortor malesuada placerat. Morbi et laoreet urna, id fringilla dui. Nunc a justo elit. Vivamus rhoncus, erat id aliquet tempus, leo nunc vulputate odio, quis lacinia velit felis a magna. In et arcu justo. Ut fermentum fermentum faucibus. Nulla sit amet placerat erat, eget tempor arcu. Praesent viverra nulla dictum nibh tincidunt, eget gravida elit lacinia. Aliquam semper malesuada sem eget tempus.</p>
+        <p>Morbi lectus ex, tempor at velit quis, consectetur suscipit ante. Etiam vehicula diam ac hendrerit tincidunt. Nullam rhoncus tellus eu urna rhoncus consectetur. Sed aliquam enim libero, pellentesque ultricies lorem sagittis eget. Duis quis nibh accumsan, tempus diam eget, posuere felis. Fusce aliquam feugiat velit, sit amet mollis felis eleifend varius. Mauris a metus vehicula, egestas nulla in, vestibulum arcu. Nam ac iaculis ex. Donec scelerisque lectus eget lectus ultrices semper. Proin in justo tristique, ultricies justo nec, faucibus dolor. Phasellus ultrices nec tortor eget aliquam. Donec a odio vel magna vestibulum vehicula. Nulla laoreet nibh urna, at pellentesque nisl iaculis a. Donec vitae purus ut nibh tristique fermentum sed non quam.</p>
+      </article>
+    </section> 
+
+    <script type="text/javascript">
+        //思路：先求取导航栏的顶部坐标，在页面滚动时不停的获取当前的页面滚动坐标，
+        //当该坐标大于page-nav的顶部坐标时，对page-nav进行固定
+        var pagenav = document.getElementById("page-nav");
+        var pagenav_top = pagenav.offsetTop;
+
+        /*监听鼠标滚动，记录滚动坐标*/
+        window.onscroll = function(){
+            var scrollTop = document.body.scrollTop;
+            
+            if(scrollTop < pagenav_top){
+                pagenav.className = '';
+            }else{
+                pagenav.className = "fixed";
+            }
+        }
+    </script>
+</body>
+</html>

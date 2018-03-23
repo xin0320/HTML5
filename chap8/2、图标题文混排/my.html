@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        .description{
+            background-color: rgb(221, 222, 223);
+            width: 980px;
+            height: 380px;
+            box-sizing: border-box; /* 保证div的大小不受边距的影响 */
+            position: relative;
+        }
+        /* 使得图片img和文字content在同一个水平线上，使用transit布局 */
+        img, .content{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        img{
+            left: 15%;
+        }
+        .content{
+            color: white;  /* div(.content)等于p, h1做了absolute设置*/
+            font-family: 'Times New Roman', Times, serif;
+            padding: 30px;
+            left:30%;
+        }
+
+        .content h1{
+            font-size: 50px;
+            position: absolute;    
+        /*
+            只要父级元素设了position并且不是static（默认既是static），
+            那么设定了absolute的子元素即以此为包含块（最近的）。
+        */
+            left:-30%;
+            top: -36%;
+        }
+
+        .content p{
+            
+            font-size: 20px;
+            color: rgb(221, 222, 223,.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <img src="comment.png" alt="comment">
+        <div class="content">
+          <h1>Lioness of Gir</h1>
+          <p>Monkeys swing merrily from tree to tree. Deer, wild, boars, and antelopes roam freely among the clump of trees. If you were to go deep into the fores5, you might even see a majestic lion, stalking its prey. This is the Gir forest in Gujarat, the only reserve forest in Asia where you can still see the king of the forest walking around.</p>
+        </div>
+      </div>
+</body>
+</html>

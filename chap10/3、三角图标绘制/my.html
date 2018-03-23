@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body{
+            margin: 50px;
+            background-color: #d4676a;
+            font-family: sans-serif;
+        }
+
+        article{
+            padding: 20px 40px;
+            background-color: white;
+            border-radius: 4px;
+            width: 400px;
+            position: relative;
+
+            box-shadow: 5px 7px 1px rgba(0, 0, 0, .1);
+            box-sizing: border-box;
+        }
+
+        article h1{
+            color: #d4676a;
+           
+        }
+
+        article p{
+            color: #666;
+        }
+
+        article::before{
+            content: '';
+            width: 0%;
+            height: 0%;
+            border-width: 8px;  /*宽高都为0的after块的边界宽度决定了对话框中三角形的大小*/
+            border-style: solid;
+
+        /* border-color: #390 #f30 #3366ff #ffff33;*/
+         border-color: transparent  transparent transparent #d4676a;
+            /*添加了position定位之后形成四色三角*/
+            position: absolute;
+            top: 16px;
+            right: 20px;
+        }
+
+        /*添加一个before块，可以形成两个三角,after盖住before*/
+
+        article::after{
+            content: '';
+            width: 0%;
+            height: 0%;
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent  transparent transparent #ffffff;
+            position: absolute;
+            top: 16px;
+            right: 24px;
+
+        }
+    </style>
+</head>
+<body>
+        <article>
+                <h1>Lorem ipsum</h1>
+                <p>Ne maluisset sententiae qui, mucius epicuri reprimique et cum, sumo saperet laboramus et pri. An ignota incorrupte quo, ex his dicta nominavi, erat consulatu eum cu. Eum ea illum assum dictas, tincidunt reprimique est eu.</p>
+        </article>
+</body>
+</html>

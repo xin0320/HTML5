@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style type="text/css">
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            background: white;
+            color: white;
+            margin: 50px;
+            font-family: "Helvetica Neue";
+        }
+
+        #collapse{
+            width: 450px;
+        }
+
+        #collapse article{
+            width: 450px;
+            background:#8B59B6;
+            border-bottom:1px solid rgba(255,255,255,.3);
+        }
+
+        #collapse h1{
+            background:#8E44AD;
+            height: 70px;
+            line-height: 70px;
+            font-size: 24px;
+            text-indent: 30px;
+
+            cursor: pointer;
+            position: relative;
+            transition: all 1s;
+        }
+
+        #collapse h1:hover{
+            background:#6e208e;
+        }
+
+        #collapse h1::after{
+            content: '';
+            position: absolute;
+            height: 0%;
+            width: 0%;
+            border-style: solid;
+            border-width: 8px;
+            border-color: #fff transparent transparent transparent;
+
+            top: 40%;
+            right: 10%;
+        }
+
+        /*下拉列表不展开(隐藏)的时候三角形的位置不同*/
+        #collapse h1.hide::after{
+            border-color:  transparent  #fff transparent transparent;
+            top: 40%;
+            right: 10%;
+        }
+
+        #collapse p{
+            margin:0;
+	        padding:30px;
+	        color:rgba(255,255,255,.85);
+        }
+
+        #collapse p.hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <section id="collapse">
+        <article>
+        <h1>Duis quistor</h1>
+        <p>In hendrerit orci est, in lacinia diam suscipit a. Phasellus pulvinar lectus augue, vitae semper tortor ornare sit amet. Aliquam porttitor posuere turpis at volutpat. Aliquam non tellus cursus, interdum tortor non, scelerisque mi. Maecenas id nisi imperdiet, pellentesque dui congue, sollicitudin erat. Quisque finibus, sapien ut dapibus imperdiet, mauris ex feugiat sem, vel tempor ligula tellus quis mi.</p>
+        </article>
+        <article>
+        <h1>Aenean libero</h1>
+        <p>Ut auctor tincidunt sapien, eget pulvinar est tincidunt eu. Vivamus nisl quam, porta at nisi eget, laoreet tincidunt dui. Cras ac tortor a elit pretium hendrerit in non justo. Nullam vestibulum, lorem in lacinia facilisis, sem mauris tempus nisi, eget dignissim elit dui et quam. Curabitur imperdiet lectus orci, eget mollis velit euismod id.</p>
+        </article>
+        <article>
+        <h1>Vestibulum</h1>
+        <p>Duis in lobortis odio, nec tincidunt sem. Cras nibh lorem, sodales a mattis eu, dignissim placerat lacus. Nullam neque dui, euismod vitae egestas sed, feugiat quis tellus. Duis aliquet velit eget ligula lobortis, a maximus orci imperdiet. Pellentesque dictum eleifend lobortis. Sed dignissim viverra arcu, id tristique nunc. Integer sit amet dapibus nisl.</p>
+        </article>
+        </section>
+
+        <script type="text/javascript">
+            var title = document.getElementsByTagName("h1");
+            var article = document.getElementsByTagName("article");
+
+            /*因为不确定有几个title+article，对其进行初始化和点击变化时通过数组的遍历进行改变*/
+            foldAll();//初始状态为折叠状态
+            function foldAll(){
+                for(var i = 0; i < title.length;i++){
+                    title[i].className = "hide";
+                    article[i].getElementsByTagName("p")[0].className = "hide";
+                }
+            }
+
+            for(var i = 0; i < title.length; i++){
+                title[i].onclick = function(e){
+                    refreshCollapse(this); //传递是当前对对象，不是event
+                }
+            }
+            /*对每一个article，从初始状态点击一下先是展开，在点击一下折叠
+                若点击了其他的article，则当前article还是要折叠的，所以应该先判断当前的状态
+                若是折叠的，在foldAll之后targetClass状态，反之亦然
+            */
+            function refreshCollapse(obj){
+                var targetClass;
+                if(obj.className == 'hide'){
+                    targetClass = "";
+                }else{
+                    targetClass = "hide";
+                }
+
+                //先折叠所有区域
+                foldAll();
+                obj.className = targetClass;
+                //obj.parentNode记为article[i]
+                obj.parentNode.getElementsByTagName("p")[0].className = targetClass;
+            }
+            
+        </script>
+</body>
+</html>
